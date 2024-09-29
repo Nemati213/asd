@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Солина Пизова</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
+</head>
+<body>
+    <h1 class="title">🎉 Солина Пизова 🎉</h1>
+
+    <div class="content">
+        <div class="images left-images">
+            {% for image in images[:3] %}  <!-- Первые 3 изображения -->
+                <img src="{{ url_for('static', filename='images/' + image) }}" alt="{{ image }}">
+            {% endfor %}
+        </div>
+
+        <div class="timer-container">
+            <h2 id="timer-title"></h2>
+            <div id="timer">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <p>Дней</p>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <p>Часов</p>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <p>Минут</p>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <p>Секунд</p>
+                </div>
+            </div>
+            <div id="birthday-message" style="display: none;">
+                <h3>Поздравляю, зайка стала на год старше. Успехов тебе по жизни, ты умничка! 🎉</h3>
+            </div>
+        </div>
+
+        <div class="images right-images">
+            {% for image in images[3:] %}  <!-- Остальные 3 изображения -->
+                <img src="{{ url_for('static', filename='images/' + image) }}" alt="{{ image }}">
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        // Анимация загрузки изображения
+        document.querySelectorAll('.images img').forEach(img => {
+            img.onload = () => img.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>
